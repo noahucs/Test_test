@@ -1,12 +1,34 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="refresh" content="0; url=temps.html">
-  <title>Opening Temperature Converter</title>
-</head>
-<body>
-  <p><a href="degrees.html">Open the temperature converter</a></p>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Measurement Converter</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+
+  <body class="min-h-screen bg-slate-50">
+    <header class="border-b border-slate-200 bg-white">
+      <div class="mx-auto max-w-5xl px-6 py-4">
+        <h1 class="text-lg font-bold text-blue-900">Measurement Converter</h1>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-5xl px-6 py-10">
+      <h2 class="text-2xl font-bold text-slate-900">Choose a converter</h2>
+
+      <div class="mt-6 rounded-2xl bg-white p-6 shadow-md">
+        <h3 class="text-lg font-bold text-slate-900">Temperature</h3>
+        <p class="mt-1 text-sm text-slate-500">
+          Convert between Celsius and Fahrenheit.
+        </p>
+        <a
+          href="degrees.html"
+          class="mt-4 inline-block rounded-lg bg-blue-700 px-5 py-3 font-semibold text-white hover:bg-blue-800"
+        >
+          Open temperature converter
+        </a>
+      </div>
+    </main>
+  </body>
 </html>
