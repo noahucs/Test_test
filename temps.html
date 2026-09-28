@@ -1,59 +1,63 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Temperature Converter</title>
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <script src="scripts/temps.js" defer></script>
-</head>
-<body class="min-h-screen bg-slate-50 text-slate-900">
-  <!-- This standalone test page can be linked from your group's three-tab navbar later. -->
-  <header class="border-b border-slate-200 bg-white">
-    <nav aria-label="Converter tabs" class="mx-auto flex max-w-4xl flex-wrap items-center justify-between gap-4 px-4 py-4">
-      <a href="temps.html" class="text-lg font-bold text-slate-900">Unit Converter</a>
-      <div class="flex flex-wrap gap-2 text-sm font-medium">
-        <a href="temps.html" aria-current="page" class="rounded-lg bg-blue-600 px-3 py-2 text-white">Temperature</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Temperature Converter</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="../scripts/degrees.js" defer></script>
+  </head>
+  <body class="min-h-screen bg-slate-50">
+    <header class="border-b border-slate-200 bg-white">
+      <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+        <h1 class="text-lg font-bold text-blue-900">Measurement Converter</h1>
+        <span class="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">
+          CPRG 306: Assignment 1
+        </span>
       </div>
-    </nav>
-  </header>
+    </header>
 
-  <main class="mx-auto max-w-4xl px-4 py-10 sm:py-16">
-    <div class="mb-8">
-      <p class="mb-2 text-sm font-semibold uppercase tracking-wide text-blue-700">Temperature</p>
-      <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Celsius and Fahrenheit</h1>
-      <p class="mt-3 text-slate-600">Convert one temperature or a list in either direction.</p>
-    </div>
+    <main class="mx-auto max-w-5xl px-6 py-10">
+      <div class="rounded-2xl bg-white p-6 shadow-md sm:p-8">
+        <h2 class="text-lg font-bold text-slate-900">Temperature</h2>
+        <p class="mt-1 text-sm text-slate-500">Convert Celsius and Fahrenheit.</p>
 
-    <!-- The form chooses a direction and accepts either one number or a comma-separated list. -->
-    <form id="temperature-form" class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8">
-      <label for="direction" class="block text-sm font-semibold">Conversion direction</label>
-      <select id="direction" class="mt-2 w-full rounded-lg border border-slate-300 bg-white px-4 py-3 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-200">
-        <option value="C-F">Celsius (°C) to Fahrenheit (°F)</option>
-        <option value="F-C">Fahrenheit (°F) to Celsius (°C)</option>
-      </select>
+        <!-- One form accepts either one number or a comma-separated list. -->
+        <form id="temperature-form" class="mt-6 space-y-4">
+          <div>
+            <label for="direction" class="block font-medium">Convert from</label>
+            <select id="direction" class="mt-1 w-full rounded-lg border border-slate-300 p-3">
+              <option value="C-F">Celsius to Fahrenheit</option>
+              <option value="F-C">Fahrenheit to Celsius</option>
+            </select>
+          </div>
 
-      <fieldset class="mt-6">
-        <legend class="text-sm font-semibold">Input type</legend>
-        <div class="mt-3 flex flex-wrap gap-x-6 gap-y-3">
-          <label class="flex items-center gap-2"><input type="radio" name="mode" value="single" checked class="accent-blue-600"> Single value</label>
-          <label class="flex items-center gap-2"><input type="radio" name="mode" value="list" class="accent-blue-600"> List of values</label>
-        </div>
-      </fieldset>
+          <div>
+            <label for="values" class="block font-medium">Value or list of values</label>
+            <input
+              id="values"
+              type="text"
+              required
+              placeholder="Example: 25 or 0, 25, 100"
+              class="mt-1 w-full rounded-lg border border-slate-300 p-3"
+            />
+            <p class="mt-1 text-sm text-slate-500">Separate multiple numbers with commas.</p>
+          </div>
 
-      <label for="values" id="values-label" class="mt-6 block text-sm font-semibold">Temperature</label>
-      <textarea id="values" rows="3" required placeholder="Example: 25" aria-describedby="input-hint" class="mt-2 w-full rounded-lg border border-slate-300 px-4 py-3 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-200"></textarea>
-      <p id="input-hint" class="mt-2 text-sm text-slate-500">Enter one number, such as 25 or -10.</p>
+          <button
+            type="submit"
+            class="rounded-lg bg-blue-700 px-5 py-3 font-semibold text-white hover:bg-blue-800"
+          >
+            Convert
+          </button>
+        </form>
 
-      <button type="submit" class="mt-6 w-full rounded-lg bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 sm:w-auto">Convert temperature</button>
-      <p id="error-message" role="alert" class="mt-4 hidden text-sm font-medium text-red-700"></p>
-    </form>
-
-    <!-- Results are written as text so both single and list output are easy to read. -->
-    <section id="result-panel" aria-live="polite" class="mt-6 hidden rounded-2xl border border-blue-200 bg-blue-50 p-5 sm:p-8">
-      <h2 class="text-lg font-semibold">Result</h2>
-      <pre id="result" class="mt-3 whitespace-pre-wrap break-words font-sans text-lg text-slate-900"></pre>
-    </section>
-  </main>
-</body>
+        <p id="error" role="alert" class="mt-4 text-red-700"></p>
+        <p id="result" aria-live="polite" class="mt-4 text-lg font-semibold text-blue-900"></p>
+        <a href="index.html" class="mt-8 inline-block text-sm font-medium text-blue-700 hover:underline">
+          Back to home
+        </a>
+      </div>
+    </main>
+  </body>
 </html>
